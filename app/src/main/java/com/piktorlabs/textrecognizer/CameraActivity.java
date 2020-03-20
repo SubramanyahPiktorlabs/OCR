@@ -1,9 +1,12 @@
 package com.piktorlabs.textrecognizer;
 
+import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class CameraActivity extends AppCompatActivity{
     static final int REQUEST_IMAGE_CAPTURE = 1;
     private Bitmap imageBitmap;
+    private ImageView imageView;
 
     public void dispatchTakePictureIntent(String msg) {
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -18,6 +22,13 @@ public class CameraActivity extends AppCompatActivity{
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
 //        return "Hello";
+    }
+
+    public void clickPictureIntent(Context reactContext, Activity getCurrentActivity){
+        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if(intent.resolveActivity(reactContext.getPackageManager()) != null){
+                getCurrentActivity.startActivityForResult(intent,REQUEST_IMAGE_CAPTURE);
+        }
     }
 //    @Override
 //    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
