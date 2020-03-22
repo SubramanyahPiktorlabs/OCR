@@ -11,6 +11,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import static android.provider.AlarmClock.EXTRA_MESSAGE;
+
 public class MainActivity extends AppCompatActivity {
 
     private ImageView imageView;
@@ -29,13 +31,18 @@ public class MainActivity extends AppCompatActivity {
         imageView = findViewById(R.id.image_view);
         detectedText = findViewById(R.id.image_text);
 
-        captureImage.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v) {
-                dispatchTakePictureIntent();
-                detectedText.setText("");
-            }
-        });
+        Intent openCameraIntent = new Intent(this,CameraActivity.class);
+        openCameraIntent.putExtra(EXTRA_MESSAGE,"Hello");
+        startActivity(openCameraIntent);
+
+//        captureImage.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//            public void onClick(View v) {
+//                dispatchTakePictureIntent();
+//                detectedText.setText("");
+//            }
+//        });
+
     }
     public String dispatchTakePictureIntent() {
 //        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);

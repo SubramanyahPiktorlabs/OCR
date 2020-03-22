@@ -16,12 +16,19 @@ public class CameraActivity extends AppCompatActivity{
     private Bitmap imageBitmap;
     private ImageView imageView;
 
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+
+//        dispatchTakePictureIntent("Hello");
+    }
+
     public void dispatchTakePictureIntent(String msg) {
+        setContentView(R.layout.camera_activity);
         Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         if (takePictureIntent.resolveActivity(getPackageManager()) != null) {
             startActivityForResult(takePictureIntent, REQUEST_IMAGE_CAPTURE);
         }
-//        return "Hello";
     }
 
     public void clickPictureIntent(Context reactContext, Activity getCurrentActivity){
